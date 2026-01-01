@@ -1,0 +1,36 @@
+[
+    {
+      "id": "p-dashboard",
+      "slug": "investment-dashboard",
+      "title": "投资收益可视化 Dashboard",
+      "summary": "用 Next.js + Recharts 展示收益曲线、资产分布，支持 CSV 导入与本地缓存。",
+      "tech": ["Next.js", "TypeScript", "Tailwind", "Recharts"],
+      "year": 2025,
+      "repo": "https://github.com/yourname/invest-dashboard",
+      "demo": "https://your-demo-url.example",
+      "thumbnail": "/project-thumbs/dashboard.svg"
+    },
+    {
+      "id": "p-sleepmate",
+      "slug": "sleep-mate-app",
+      "title": "睡眠伴侣 App（原型）",
+      "summary": "白噪音播放器 + 睡眠计时与闹钟，移动端交互原型（Expo）。",
+      "tech": ["React Native", "Expo", "Zustand"],
+      "year": 2024,
+      "repo": "https://github.com/yourname/sleep-mate",
+      "demo": "#",
+      "thumbnail": "/project-thumbs/sleep.svg"
+    },
+    {
+      "id": "p-system",
+      "slug": "design-system-kit",
+      "title": "Design System Starter Kit",
+      "summary": "A reusable token-driven system with Storybook docs, theming, and accessibility linting baked in.",
+      "tech": ["Storybook", "Tailwind", "React Aria"],
+      "year": 2023,
+      "repo": "https://github.com/yourname/design-system-kit",
+      "demo": "https://design-system-kit.example",
+      "thumbnail": "/project-thumbs/system.svg"
+    }
+  ]
+  

@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Real Estate Market Lab
+
+Upload a Chinese real-estate survey Excel (支持多 Sheet，如 “经开区市调2025.12.2.xlsx”), normalize the data on the backend with SheetJS, visualize monthly performance with Recharts, and call OpenAI to auto-generate a Chinese market analysis.
+
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 (inline `@import "tailwindcss"`)
+- Recharts for charts
+- SheetJS (`xlsx`) for Excel parsing (server)
+- OpenAI API for AI-written analysis
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies (updates `package-lock.json`):
+   ```bash
+   npm install
+   ```
+2. Add your OpenAI key (optional for offline demo):
+   ```bash
+   echo "OPENAI_API_KEY=sk-xxx" > .env.local
+   ```
+3. Run the dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) and either:
+   - Upload your Excel (`.xlsx` / `.xls`, Chinese headers supported: 项目/案名、区域/板块、均价、套数、产品类型、面积、月份).
+   - Or click “加载示例数据” to explore the dashboard without a file.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Notes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Excel parsing runs on the server (`/api/upload`), not persisted.
+- If `OPENAI_API_KEY` is missing, `/api/analyze` returns a local placeholder summary so you can still demo the flow.
+- Styling/theme, language toggle, and charts are client-side; parsing and AI calls are server-side.
