@@ -166,10 +166,10 @@ const translations = {
 } as const
 
 // 支持的语言类型与可复用副本类型
-export type Language = 'en' | 'zh'
-export type Copy = (typeof translations)['en']
+export type Language = keyof typeof translations
+export type Copy = (typeof translations)[Language]
 
-type LanguageContextValue = {
+interface LanguageContextValue {
   language: Language
   copy: Copy
   setLanguage: (lang: Language) => void
