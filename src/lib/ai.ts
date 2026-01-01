@@ -31,18 +31,21 @@ function buildPrompt({ metrics, samples, locale = 'zh' }: AnalysisPayload) {
 export async function generateMarketNarrative(payload: AnalysisPayload): Promise<string> {
   const prompt = buildPrompt(payload)
 
-  if (!process.env.OPENAI_API_KEY) {
+  const apiKey = process.env.DEEPSEEK_API_KEY || process.env.OPENAI_API_KEY
+  const baseURL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com'
+
+  if (!apiKey) {
     return [
-      '未检测到 OPENAI_API_KEY，使用本地占位分析：',
+      '未检测到 DEEPSEEK_API_KEY，使用本地占位分析：',
       `• 时间覆盖：${payload.metrics.months.join(' / ') || '未标注'}`,
       `• 预估成交额：¥${payload.metrics.totalRevenue.toFixed(0)}，均价约 ¥${payload.metrics.avgPrice.toFixed(0)} / ㎡`,
-      '• 请在 .env.local 填写 OPENAI_API_KEY 后重试，将得到更完整的中文分析。',
+      '• 请在 .env.local 填写 DEEPSEEK_API_KEY 后重试，将得到更完整的中文分析。',
     ].join('\n')
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  const client = new OpenAI({ apiKey, baseURL })
   const completion = await client.chat.completions.create({
-    model: 'gpt-4o-mini',
+    model: 'deepseek-chat',
     messages: prompt,
     temperature: 0.4,
   })
