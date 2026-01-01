@@ -180,7 +180,7 @@ const STORAGE_KEY = 'portfolio-language'
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 function resolvePreferredLanguage(): Language {
-  if (typeof window === 'undefined') return 'en'
+  if (typeof window === 'undefined') return 'zh'
   const stored = window.localStorage.getItem(STORAGE_KEY) as Language | null
   if (stored === 'en' || stored === 'zh') return stored
   return window.navigator.language.startsWith('zh') ? 'zh' : 'en'
@@ -188,7 +188,7 @@ function resolvePreferredLanguage(): Language {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Hydration-safe default; update to preferred language after mount.
-  const [language, setLanguage] = useState<Language>('en')
+  const [language, setLanguage] = useState<Language>('zh')
 
   useEffect(() => {
     const preferred = resolvePreferredLanguage()
